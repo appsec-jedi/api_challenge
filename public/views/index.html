@@ -10,8 +10,14 @@
     <main ng-controller = "GifController as gif">
       <form>
         <input type ="text" ng-model = "gif.search"  />
-        <button type="sumbit" ng-click = "gif.searchGif(gif.gifDisplay)">SEARCH!</button>
+        <!-- search function does not need parameters -->
+        <button type="sumbit" ng-click = "gif.searchGif()">SEARCH!</button>
+
       </form>
+      <div ng-repeat="pic in gif.gifs">
+        <!-- passed gif route to pic object -->
+          <img ng-src="{{pic.images.original.url}}"  />
+      </div>
 
 
 
@@ -22,4 +28,3 @@
     </main>
   </body>
 </html>
-<!-- ng-repeat = "individualGif in gif.gifDisplay" -->

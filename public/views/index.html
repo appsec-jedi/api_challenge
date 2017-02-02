@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="/scripts/client.js"></script>
+    <script src="/scripts/gif-service.js" charset="utf-8"></script>
     <title>Random gifs</title>
   </head>
   <body ng-app = "gifApp">
@@ -11,17 +12,15 @@
       <form>
         <input type ="text" ng-model = "gif.search"  />
         <!-- search function does not need parameters -->
-        <button type="sumbit" ng-click = "gif.searchGif()">SEARCH!</button>
+        <button type="sumbit" ng-click = "gif.searchForGifs(gif.search)">SEARCH!</button>
 
       </form>
-      <div ng-repeat="pic in gif.gifs">
+      <div ng-repeat="pic in gif.gifDisplay">
         <!-- passed gif route to pic object -->
           <img ng-src="{{pic.images.original.url}}"  />
       </div>
 
-
-
-        <button ng-click = "gif.randomGif(gif.randGif)">Random</button>
+        <button ng-click = "gif.randomGif()">Random</button>
 
         <img ng-src="{{gif.randGif}}"  />
 

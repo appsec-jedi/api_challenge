@@ -1,14 +1,14 @@
-var app = angular.module('gifApp', []);
+var app = angular.module('gifApp', ['ngRoute']);
 
 app.controller('GifController', function(GifService){
   console.log('GifController loaded');
-
-
 
   var ctrl = this;
 
   ctrl.gifDisplay = '';
   ctrl.randGif = '';
+  ctrl.addedGifs = {};
+  ctrl.allGifs = null;
 
   ctrl.randomGif = function(){
     console.log('button clicked');
@@ -25,8 +25,37 @@ app.controller('GifController', function(GifService){
       ctrl.gifDisplay = gifUrl;
       console.log("search found", ctrl.gifDisplay);
     })//end of searchGif
-
   }//end of searchForGifs
 
+  ctrl.searchForFavorites = function() {
+    GifService.searchFavorites = function(){
+      console.log("Here are your favorites, ", search);
+      // crtl.allGifs = search;
+      // console.log(ctrl.faveGifs);
+    };
+  };
 
+  ctrl.addFavorite = function(comment, url){
+    console.log("Added ", comment, '', url, " to favorites");
+    ctrl.addedGifs = {
+      'comment': comment,
+      'url': url
+    }
+    GifService.addFavoriteGif(ctrl.addedGifs).then(function(faveGif){
+      console.log("list of all faves ", faveGif);
+      ctrl.allGifs = faveGif;
+    })
+  }//end of addFavorite
+});// end of GifController
+
+app.config(function($routeProvider, $locationProvider){
+  $routeProvider.when('/', {
+    templateUrl: 'views/pages/home.html',
+    controller: 'GifController as gif'
+  }).when('/favorites', {
+    templateUrl: 'views/pages/favorites.html',
+    controller: 'GifController as gif'
   });
+
+  $locationProvider.html5Mode(true);
+});//end of routing

@@ -1,8 +1,14 @@
 app.service('GifService', function($http) {
-  var API = 'http://api.giphy.com/v1'
+
+  var publicAPIkey = "dc6zaTOxFJmzC";
+  var API = 'http://api.giphy.com/v1/gifs/';
 
   this.getRandomGifs = function() {
-    return $http.get(API + '/gifs/random?api_key=dc6zaTOxFJmzC').then(function(response){
+    return $http({
+      type: "GET",
+      url: API + 'random?api_key=' + publicAPIkey,
+      params: { limit:'1' }
+    }).then(function(response){
         console.log("got a response from the API", response);
         return response.data.data.image_url;
       }).catch(function(err){
@@ -12,7 +18,11 @@ app.service('GifService', function($http) {
 
   this.searchGif = function(search){
     console.log("search found", search);
-    return $http.get(API + '/gifs/search?q='+ search + '&api_key=dc6zaTOxFJmzC').then(function(response){
+    return $http({
+      type: "GET",
+      url: API + 'search?q=' +  search + '&api_key=' + publicAPIkey,
+      params: { limit: "1" }
+    }).then(function(response){
         console.log("got a response from the API", response);
         return response.data.data;
         console.log(response.data.data);
@@ -21,4 +31,37 @@ app.service('GifService', function($http) {
       });
     }//end of searchGif
 
+    this.searchFavorites = function(search){
+      console.log("search found", search);
+      return $http({
+        type: "GET",
+        url: '/favorites'
+      }).then(function(response){
+          console.log("got a response from the DB", response);
+          // return response.data.data;
+          console.log(response);
+          return response;
+        }).catch(function(err){
+          console.log("error getting info from DB", err);
+        });
+      }//end of searchFavorites
+
+  this.addFavoriteGif = function(fave){
+    console.log("Adding", fave);
+    return $http({
+      type: "POST",
+      url: '/favorites',
+      data: fave
+    }).then(function(response){
+        console.log("got a response from the DB", response);
+        allFaveGifs = response;
+        // faveGif = {
+        //   'comment': response.data[0].comment,
+        //   'gifUrl': response.data[0].url
+        // };
+        return allFaveGifs;
+      }).catch(function(err){
+        console.log("error getting info from DB", err);
+      });
+    }//end of addFavoriteGif
 });//end of service

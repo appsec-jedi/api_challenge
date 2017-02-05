@@ -3,26 +3,22 @@
   <head>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src="/scripts/client.js"></script>
     <script src="/scripts/gif-service.js" charset="utf-8"></script>
-    <title>Random gifs</title>
+    <base href="/">
+    <title>Get Yo Gifs Here!</title>
   </head>
   <body ng-app = "gifApp">
     <main ng-controller = "GifController as gif">
-      <form>
-        <input type ="text" ng-model = "gif.search"  />
-        <!-- search function does not need parameters -->
-        <button type="sumbit" ng-click = "gif.searchForGifs(gif.search)">SEARCH!</button>
+      <h1>Get Yo Gifs Here!</h1>
+      <a href = '/'>Home</a>
+      <a href = '/favorites'>Favorites</a>
+      <ng-view></ng-view>
 
-      </form>
-      <div ng-repeat="pic in gif.gifDisplay">
-        <!-- passed gif route to pic object -->
-          <img ng-src="{{pic.images.original.url}}"  />
-      </div>
+        <!-- <button ng-click = "gif.randomGif()">Random</button>
 
-        <button ng-click = "gif.randomGif()">Random</button>
-
-        <img ng-src="{{gif.randGif}}"  />
+        <img ng-src="{{gif.randGif}}"  /> -->
 
     </main>
   </body>

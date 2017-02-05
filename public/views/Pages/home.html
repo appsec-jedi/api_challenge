@@ -1,0 +1,24 @@
+<h1>You at home, kid</h1>
+<form>
+  <input type ="text" ng-model = "gif.search"  />
+  <!-- search function does not need parameters -->
+  <button type="sumbit" ng-click = "gif.searchForGifs(gif.search)">SEARCH!</button>
+
+</form>
+<div class = "gifs" ng-repeat="pic in gif.gifDisplay">
+  <!-- passed gif route to pic object -->
+    <img ng-model = "gif.gifDisplay[$index].images.fixed_width.url" ng-src="{{pic.images.fixed_width.url}}"  />
+    <form>
+      <input placeholder = "why do you like it?" type ="text" ng-model = "gif.favorite" />
+      <button type="submit" ng-click = "gif.addFavorite(gif.favorite, gif.gifDisplay[$index].images.fixed_width.url)">Add it!</button>
+    </form>
+</div>
+<button ng-click = "gif.randomGif()">Random</button>
+<div class = "gifs">
+  <!-- passed gif route to pic object -->
+    <img ng-model = "gif.randGif" ng-src="{{gif.randGif}}"/>
+    <form ng-show = "gif.randGif" {{gif.randGif}}>
+      <input placeholder = "why do you like it?" type ="text" ng-model = "gif.favorite" />
+      <button type="submit" ng-click = "gif.addFavorite(gif.favorite, gif.randGif)">Add it!</button>
+    </form>
+</div>

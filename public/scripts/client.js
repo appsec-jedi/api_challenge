@@ -27,13 +27,14 @@ app.controller('GifController', function(GifService){
     })//end of searchGif
   }//end of searchForGifs
 
-  ctrl.searchForFavorites = function() {
-    GifService.searchFavorites = function(){
-      console.log("Here are your favorites, ", search);
-      // crtl.allGifs = search;
-      // console.log(ctrl.faveGifs);
-    };
-  };
+  // ctrl.searchForFavorites = function() {
+  //   console.log("searching for favorites");
+    GifService.searchFavorites().then(function(searchReturn){
+      console.log("Here are your favorites, ", searchReturn);
+      ctrl.allGifs = searchReturn.data;
+      console.log(ctrl.allGifs);
+    });
+  // };
 
   ctrl.addFavorite = function(comment, url){
     console.log("Added ", comment, '', url, " to favorites");
@@ -41,9 +42,10 @@ app.controller('GifController', function(GifService){
       'comment': comment,
       'url': url
     }
+    console.log(ctrl.addedGifs);
     GifService.addFavoriteGif(ctrl.addedGifs).then(function(faveGif){
       console.log("list of all faves ", faveGif);
-      ctrl.allGifs = faveGif;
+      // ctrl.allGifs = faveGif;
     })
   }//end of addFavorite
 });// end of GifController

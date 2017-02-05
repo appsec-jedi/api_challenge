@@ -37,7 +37,7 @@ app.service('GifService', function($http) {
         type: "GET",
         url: '/favorites'
       }).then(function(response){
-          console.log("got a response from the DB", response);
+          console.log("got a GET response from the DB", response);
           // return response.data.data;
           console.log(response);
           return response;
@@ -53,7 +53,7 @@ app.service('GifService', function($http) {
       url: '/favorites',
       data: fave
     }).then(function(response){
-        console.log("got a response from the DB", response);
+        console.log("got a POST response from the DB", response);
         allFaveGifs = response;
         // faveGif = {
         //   'comment': response.data[0].comment,

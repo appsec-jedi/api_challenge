@@ -22,7 +22,7 @@ router.get('/favorites', function(req, res) {
           console.log("Error querying DB", err);
           res.sendStatus(500);
         } else {
-          console.log("Got info from DB", result.rows);
+          console.log("Got GET info from DB", result.rows);
           res.send(result.rows);
         }
       });
@@ -39,13 +39,15 @@ router.post('/favorites', function(req, res) {
       client.query(
         "INSERT INTO favorites (url, comment) VALUES ($1, $2) RETURNING *;",
         [ req.body.url, req.body.comment ],
+        console.log("req.body", req);
+        // console.log("req.body.comment", req.body.comment);
         function(err, result) {
           done();
           if (err) {
             console.log("Error querying DB", err);
             res.sendStatus(500);
           } else {
-            console.log("Got info from DB", result.rows);
+            console.log("Got POST info from DB", result.rows);
             res.send(result.rows);
           }
         }

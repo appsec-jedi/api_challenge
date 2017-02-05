@@ -1,7 +1,7 @@
-<h1>Here are your favorites</h1>
-<div ng-init = "gif.searchForFavorites()" ng-repeat = 'gif in gif.allGifs' >
-  <!-- <img src= "{{ gif.data.url }}"/> -->
-  <li>
-    {{ gif.data.url }}
-  </li>
+<h1 ng-init = "gif.searchForFavorites()">Here are your favorites</h1>
+<div class = "gifs" ng-repeat = 'giphy in gif.allGifs' >
+  <img ng-src= '{{ giphy.url }}'/>
+  <p>
+    {{ giphy.comment }}
+  </p>
 </div>

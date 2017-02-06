@@ -1,18 +1,26 @@
-<form>
-  <input type ="text" ng-model = "gif.search"  />
-  <!-- search function does not need parameters -->
-  <button type="sumbit" ng-click = "gif.searchForGifs(gif.search)">SEARCH!</button>
+<section>
+    <div class = "options">
+      <button type="submit" ng-click = "gif.randomGif()">Bang it here for a random GIF</button>
+    </div>
+    <div class = "options">
+        <form>
+          <input placeholder = "what gif are you looking for?" type ="text" ng-model = "gif.search"  />
+          <!-- search function does not need parameters -->
+          <button type="sumbit" ng-click = "gif.searchForGifs(gif.search)">Check the interwebs</button>
 
-</form>
-<div class = "gifs" ng-repeat="pic in gif.gifDisplay">
-  <!-- passed gif route to pic object -->
-    <img ng-model = "gif.gifDisplay[$index].images.fixed_width.url" ng-src="{{pic.images.fixed_width.url}}"  />
-    <form>
-      <input placeholder = "why do you like it?" type ="text" ng-model = "gif.favorite" />
-      <button type="submit" ng-click = "gif.addFavorite(gif.favorite, gif.gifDisplay[$index].images.fixed_width.url)">Add it!</button>
-    </form>
-</div>
-<button ng-click = "gif.randomGif()">Random</button>
+        </form>
+    </div>
+  </section>
+    <div class = "gifs" ng-repeat="pic in gif.gifDisplay">
+      <!-- passed gif route to pic object -->
+      <img ng-model = "gif.gifDisplay[$index].images.fixed_width.url" ng-src="{{pic.images.fixed_width.url}}"  />
+      <form>
+        <input placeholder = "why do you like it?" type ="text" ng-model = "gif.favorite" />
+        <button type="submit" ng-click = "gif.addFavorite(gif.favorite, gif.gifDisplay[$index].images.fixed_width.url)">Add it!</button>
+      </form>
+    </div>
+
+<!-- <button id="random" ng-click = "gif.randomGif()">Random</button> -->
 <div class = "gifs">
   <!-- passed gif route to pic object -->
     <img ng-model = "gif.randGif" ng-src="{{gif.randGif}}"/>

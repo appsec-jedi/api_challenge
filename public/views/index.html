@@ -6,16 +6,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src="/scripts/client.js"></script>
     <script src="/scripts/gif-service.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/styles/stylesheet.css">
     <base href="/">
     <title>Get Yo Gifs Here!</title>
   </head>
   <body ng-app = "gifApp">
     <main ng-controller = "GifController as gif">
       <h1>Get Yo Gifs Here!</h1>
-      <a href = '/'>Home</a>
-      <a href = '/favorites'>Favorites<span> ({{gif.numGifs}})</span></a>
+      <nav>
+        <a href = '/'>Home</a>
+        <a href = '/favorites'>Favorites<span> ({{gif.numGifs}})</span></a>
+      </nav>
+      <br />
       <ng-view></ng-view>
-
     </main>
   </body>
 </html>

@@ -13,12 +13,8 @@
     <main ng-controller = "GifController as gif">
       <h1>Get Yo Gifs Here!</h1>
       <a href = '/'>Home</a>
-      <a href = '/favorites'>Favorites</a>
+      <a href = '/favorites'>Favorites<span> ({{gif.numGifs}})</span></a>
       <ng-view></ng-view>
-
-        <!-- <button ng-click = "gif.randomGif()">Random</button>
-
-        <img ng-src="{{gif.randGif}}"  /> -->
 
     </main>
   </body>

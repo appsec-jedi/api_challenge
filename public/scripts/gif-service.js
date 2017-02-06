@@ -38,8 +38,6 @@ app.service('GifService', function($http) {
         url: '/favorites'
       }).then(function(response){
           console.log("got a GET response from the DB", response);
-          // return response.data.data;
-          console.log(response);
           return response;
         }).catch(function(err){
           console.log("error getting info from DB", err);
@@ -49,9 +47,12 @@ app.service('GifService', function($http) {
   this.addFavoriteGif = function(fave){
     console.log("Adding", fave);
     return $http({
-      type: "POST",
+      method: 'POST',
       url: '/favorites',
-      data: fave
+      data: {
+        'url': fave.url,
+        'comment': fave.comment
+      }
     }).then(function(response){
         console.log("got a POST response from the DB", response);
         allFaveGifs = response;
